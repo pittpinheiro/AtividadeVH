@@ -25,23 +25,27 @@ public class Conta {
 
     public void deposito(int quantidade){
         saldo+=quantidade;
-        String saida = "DEPOSITO DE ";
-        saida += Integer.toString(quantidade);
+        String saida = "DEPOSITO DE " + quantidade;
         SaidaExtrato(saida);
     }
-    public void SaidaExtrato(){
-        extrato.add(saida)
-    }
+    
     public void saldo(int quantidade){
         if(quantidade <= 0){
             throw new IllegalArgumentException("Saldo nao pode ser menor que zero")
         }
+        if(quantidade>saldo){
+            saldo=saldo;
+            String saida = "IMPOSSÍVEL DE REALIZAR , SALDO PERMANECE =" + saldo;
+            SaidaExtrato(saida)
+        }
         else {
             saldo+=quantidade;
-            String saida = "DEPOSITO DE ";
-            saida += Integer.toString(quantidade);
+            String saida = "DEPOSITO DE " + quantidade;
             SaidaExtrato(saida);
         }
+    }
+    public void SaidaExtrato(String saida){
+        extrato.add(saida);
     }
 
 }

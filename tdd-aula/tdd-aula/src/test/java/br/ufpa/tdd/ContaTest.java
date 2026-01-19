@@ -45,7 +45,24 @@ class ContaTest {
     }
 
     void ContaDepoitoErro(){
-        conta conta4 = new Conta();
-        ...
+        Conta conta4 = new Conta();
+        conta4.deposito(0);
+        assertThrows(IllegalArgumentException.class, () -> conta4.deposito(0));
+    }
+    void ContaSaque0QueSaldo(){
+        Conta conta5 = new Conta();
+        conta5.saque(0);
+        assertThrows(IllegalArgumentException.class, () -> conta5.saque(0));
+    }
+    void ContaSaqueMenor0QueSaldo(){
+        Conta conta6 = new Conta();
+        conta6.saque(-1);
+        assertThrows(IllegalArgumentException.class, () -> conta6.saque(-1));
+    }
+    void ContaSaqueMaiorQueSaldo(){
+        Conta conta7 = new Conta();
+        conta7.deposito(10);
+        conta7.saque(11);
+        assertEquals(10, conta7.getSaldo());
     }
 }
